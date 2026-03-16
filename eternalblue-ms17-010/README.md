@@ -27,3 +27,17 @@ This vulnerability was widely exploited by attacks such as WannaCry ransomware.
 ## Commands Used
 
 ### Nmap Scan
+
+## Evidence
+
+### Nmap Scan
+![Nmap Scan](nmap-scan.png)
+
+### Vulnerability Scan
+![MS17-010 Scan](ms17-010-scan.png)
+
+### Exploitation
+![Metasploit Exploit](metasploit-exploit.png)
+
+### Meterpreter Access
+![Meterpreter Session](meterpreter-session.png)
