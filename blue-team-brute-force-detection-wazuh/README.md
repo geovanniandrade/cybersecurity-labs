@@ -26,3 +26,11 @@ Command used:
 
 ```bash
 runas /user:vboxuser cmd
+
+## 🔍 Detection Evidence
+
+### Wazuh Dashboard
+![Dashboard](images/01-wazuh-dashboard-overview.png)
+
+### Brute Force Detection Events
+![Events](images/03-bruteforce-events-detection.png)
