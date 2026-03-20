@@ -18,3 +18,10 @@ Desenvolver habilidades práticas em detecção, exploração e resposta a incid
 - Kali Linux
 - Windows Server
 - Nmap / Metasploit
+
+
+## 📊 Resultados
+
+- ✔️ Detecção de ataques brute force via logs (Event ID 4625)
+- ✔️ Exploração de vulnerabilidades conhecidas (MS17-010)
+- ✔️ Identificação de falhas de controle de acesso
