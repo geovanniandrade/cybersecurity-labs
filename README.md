@@ -4,6 +4,7 @@ Este repositório contém meus laboratórios práticos em Cybersecurity, com foc
 
 ## 🛡️ Blue Team
 - Brute Force Detection with Wazuh
+- Analise OpenVAS vs NMAP 
 
 ## 💣 Red Team
 - EternalBlue (MS17-010)
