@@ -18,6 +18,7 @@ macof -i eth1
 This floods the switch MAC table with fake addresses.
 
 🚨 Impact
+
 High CPU usage
 Switch instability
 Network degradation
