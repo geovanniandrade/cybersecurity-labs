@@ -90,7 +90,13 @@ switchport port-security
 switchport port-security maximum 2
 switchport port-security violation shutdown
 
-📸 Evidence
-- attack.png  
-- switch.png  
-- mitigation.png
+## 📸 Evidence
+
+### 🔴 Attack Execution
+![MAC Flooding Attack](./attack.png)
+
+### 📊 Network Behavior
+![Switch Behavior](./topology.png)
+
+### 🛡️ Mitigation Applied
+![Port Security](./mitigation.png)
