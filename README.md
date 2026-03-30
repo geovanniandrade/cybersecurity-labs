@@ -19,17 +19,17 @@ Desenvolver habilidades práticas em detecção, exploração e resposta a incid
 
 ## 📌 Tecnologias
 
-### 🔐 Security & Detection
+###  Security & Detection
 - Wazuh (SIEM – Threat Detection & Log Analysis)
 
-### 🧪 Offensive Security
+###  Offensive Security
 - Kali Linux (macof – MAC Flooding Attack Simulation)
 - Nmap (Network Discovery & Enumeration)
 
-### 🌐 Network & Infrastructure
+###  Network & Infrastructure
 - Layer 2 Switching (CAM Table, Port Security)
 - Windows Server (Lab Environment)
 
-### 🛠️ Simulation & Lab
+###  Simulation & Lab
 - GNS3 (Network Simulation Environment)
 
