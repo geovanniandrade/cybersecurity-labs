@@ -11,6 +11,9 @@ Este repositório contém meus laboratórios práticos em Cybersecurity, com foc
 - Broken Access Control
 - WordPress Pentest
 
+## 🟣 Purple Team
+MAC Flooding Attack & Mitigation (Port Security)
+
 ## 🎯 Objetivo
 Desenvolver habilidades práticas em detecção, exploração e resposta a incidentes.
 
