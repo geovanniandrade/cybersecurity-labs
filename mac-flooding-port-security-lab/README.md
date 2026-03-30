@@ -33,3 +33,15 @@ switchport port-security mac-address sticky
 ✅ Result
 
 The switch detected the attack and shut down the interface (secure-shutdown).
+```
+
+## 📸 Evidence
+
+### Attack in progress
+![Attack](attack.png)
+
+### Network topology
+![Topology](topology.png)
+
+### Port Security triggered
+![Mitigation](mitigation.png)
