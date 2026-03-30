@@ -18,8 +18,18 @@ MAC Flooding Attack & Mitigation (Port Security)
 Desenvolver habilidades práticas em detecção, exploração e resposta a incidentes.
 
 ## 📌 Tecnologias
-- Wazuh (SIEM)
-- Kali Linux
-- Windows Server
-- Nmap / Metasploit
+
+### 🔐 Security & Detection
+- Wazuh (SIEM – Threat Detection & Log Analysis)
+
+### 🧪 Offensive Security
+- Kali Linux (macof – MAC Flooding Attack Simulation)
+- Nmap (Network Discovery & Enumeration)
+
+### 🌐 Network & Infrastructure
+- Layer 2 Switching (CAM Table, Port Security)
+- Windows Server (Lab Environment)
+
+### 🛠️ Simulation & Lab
+- GNS3 (Network Simulation Environment)
 
