@@ -1,92 +1,93 @@
 # 🔐 Cybersecurity Labs - Geovanni Andrade
 
-Welcome to my cybersecurity portfolio, focused on practical labs simulating real-world scenarios in **Blue Team, Red Team, and Purple Team operations**.
+Bem-vindo ao meu portfólio de cibersegurança, focado em laboratórios práticos que simulam cenários do mundo real nas operações de Blue Team, Red Team e Purple Team.
 
-This repository demonstrates hands-on experience in **threat detection, vulnerability assessment, exploitation, and incident response**, using industry-relevant tools and methodologies.
+Este repositório demonstra experiência prática em detecção de ameaças, avaliação de vulnerabilidades, exploração e resposta a incidentes, utilizando ferramentas e metodologias relevantes do mercado.
 
 ---
 
-## 🎯 Objective
+## 🎯 Objetivo
 
-Develop practical cybersecurity skills through real-world simulations, focusing on:
+Desenvolver habilidades práticas em cibersegurança por meio de simulações de cenários reais, com foco em:
 
-- Threat Detection & Analysis  
-- Incident Response  
-- Network Security  
-- Vulnerability Assessment  
-- Offensive Security Techniques  
+- Detecção e Análise de Ameaças
+- Resposta a Incidentes
+- Segurança de Redes
+- Avaliação de Vulnerabilidades
+- Técnicas de Segurança Ofensiva
 
 ---
 
 ## 🛡️ Blue Team
 
-- 🔍 **Brute Force Detection with Wazuh**  
-- 📊 **Vulnerability Assessment (OpenVAS vs Nmap)**  
+- 🔍 Detecção de Brute Force com Wazuh
+- 📊 Avaliação de Vulnerabilidades (OpenVAS vs Nmap)
 
 ---
 
 ## 💣 Red Team
 
-- 💥 **EternalBlue Exploitation (MS17-010)**  
-- 🔓 **Broken Access Control**  
-- 🌐 **WordPress Pentest**  
+- 💥 Exploração EternalBlue (MS17-010)
+- 🔓 Falhas de Controle de Acesso (Broken Access Control)
+- 🌐 Pentest em WordPress
 
 ---
 
 ## 🟣 Purple Team
 
-- 🚨 **MAC Flooding Attack & Mitigation (Port Security)**  
+- 🚨 Ataque de MAC Flooding & Mitigação (Port Security)
 
 ---
 
-## 🧠 Skills Demonstrated
+## 🧠 Habilidades Demonstradas
 
-- Security Monitoring & Threat Detection  
-- Incident Analysis & Response  
-- Network Traffic Analysis  
-- Vulnerability Identification & Risk Analysis  
-- Offensive & Defensive Security Techniques  
+- Monitoramento de Segurança e Detecção de Ameaças
+- Análise e Resposta a Incidentes
+- Análise de Tráfego de Rede
+- Identificação de Vulnerabilidades e Análise de Risco
+- Técnicas de Segurança Ofensiva e Defensiva
 
 ---
 
-## 🛠️ Technologies & Concepts
+## 🛠️ Tecnologias e Conceitos
 
-### 🔐 Security & Detection
-- Wazuh (SIEM – Threat Detection & Log Analysis)
+### 🔐 Segurança e Detecção
+- Wazuh (SIEM – Detecção de Ameaças e Análise de Logs)
 
-### 🧪 Offensive Security
+### 🧪 Segurança Ofensiva
 - Kali Linux (macof, Nmap, Metasploit)
-- Exploitation Techniques (MS17-010, Web Attacks)
+- Técnicas de Exploração (MS17-010, ataques web)
 
-### 🌐 Network & Infrastructure
-- Layer 2 Switching (CAM Table, Port Security)
-- Windows Server (Active Directory Environment)
+### 🌐 Rede e Infraestrutura
+- Switching de Camada 2 (Tabela CAM, Port Security)
+- Windows Server (Ambiente Active Directory)
 
-### 🛠️ Simulation & Lab
-- GNS3 (Network Simulation)
-- VirtualBox (Lab Environment)
-
----
-
-## 📌 Featured Project
-
-🚨 **MAC Flooding Incident Response Lab**  
-Simulated a Layer 2 attack, analyzed network behavior, and implemented mitigation using Port Security.
-
-👉 Demonstrates real-world SOC workflow:
-- Detection  
-- Investigation  
-- Response  
+### 🛠️ Simulação e Laboratório
+- GNS3 (Simulação de Redes)
+- VirtualBox (Ambiente de Laboratório)
 
 ---
 
-## 📈 Continuous Improvement
+## 📌 Projeto em Destaque
 
-This repository is continuously updated with new labs and scenarios focused on real-world cybersecurity challenges.
+### 🚨 Laboratório de Resposta a Incidente de MAC Flooding
+
+Simulação de um ataque em camada 2, com análise do comportamento da rede e implementação de mitigação utilizando Port Security.
+
+**Este projeto demonstra um fluxo real de SOC:**
+- Detecção
+- Investigação
+- Resposta
 
 ---
 
-## 🤝 Connect with me
+## 📈 Melhoria Contínua
 
-- 💼 LinkedIn: https://www.linkedin.com/in/geovanni-g-o-andrade/
-- 💻 GitHub: https://github.com/geovanniandrade
+Este repositório é continuamente atualizado com novos laboratórios e cenários focados em desafios reais de cibersegurança.
+
+---
+
+## 🤝 Conecte-se comigo
+
+- 💼 LinkedIn: [Geovanni G. O. Andrade](https://www.linkedin.com/in/geovanni-g-o-andrade/)
+- 💻 GitHub: [geovanniandrade](https://github.com/geovanniandrade)
