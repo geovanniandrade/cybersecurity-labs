@@ -30,6 +30,7 @@ Desenvolver habilidades práticas em cibersegurança por meio de simulações de
 - 💥 Exploração EternalBlue (MS17-010)
 - 🔓 Falhas de Controle de Acesso (Broken Access Control)
 - 🌐 Pentest em WordPress
+- 🔥 SSH Brute Force em Cisco IOS + Hardening
 
 ---
 
