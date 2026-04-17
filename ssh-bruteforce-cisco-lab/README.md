@@ -2,6 +2,8 @@
 
 This project demonstrates a practical cybersecurity lab simulating an SSH brute force attack against a Cisco IOS router and the implementation of defensive controls using Defense in Depth.
 
+> 📄 **Technical Report:** [View PDF](./Relatorio_Tecnico.pdf)
+
 ---
 
 ## 🎯 Objective
@@ -74,12 +76,6 @@ All lab screenshots are available in the `images/` folder.
 
 ---
 
-## 📄 Full Report
-
-- [DOCX Version](./report/Relatorio_Tecnico_SSH_BruteForce_Geovanni_final.docx)
-- [PDF Version](./report/Relatorio_Tecnico_SSH_BruteForce_Geovanni_final.pdf)
-
----
 
 ## 🧠 Key Takeaways
 
