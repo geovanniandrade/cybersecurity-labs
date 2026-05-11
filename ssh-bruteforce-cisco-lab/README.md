@@ -1,90 +1,95 @@
-# 🔐 SSH Brute Force Attack & Defense in Depth (Cisco IOS)
+# 🔐 Ataque de Força Bruta SSH e Defesa em Profundidade em Cisco IOS
 
-This project demonstrates a practical cybersecurity lab simulating an SSH brute force attack against a Cisco IOS router and the implementation of defensive controls using Defense in Depth.
+Este projeto demonstra um laboratório prático de cibersegurança, simulando um ataque de força bruta via SSH contra um roteador Cisco IOS e a implementação de controles defensivos utilizando o conceito de **Defense in Depth**.
 
-> 📄 **Technical Report:** [View PDF](./Relatorio_Tecnico.pdf)
-
----
-
-## 🎯 Objective
-
-To demonstrate how weak credentials and insecure configurations can lead to full device compromise, and how proper security controls can mitigate these risks.
+> 📄 **Relatório Técnico:** [Visualizar PDF](./Relatorio_Tecnico.pdf)
 
 ---
 
-## 🧱 Lab Environment
+## 🎯 Objetivo
+
+Demonstrar como credenciais fracas e configurações inseguras podem permitir o comprometimento completo de um dispositivo de rede, além de apresentar como controles adequados de segurança podem mitigar esses riscos.
+
+---
+
+## 🧱 Ambiente de Laboratório
 
 - GNS3
-- Cisco IOS Router
-- Kali Linux (Attacker)
-- Layer 2 Switch
+- Roteador Cisco IOS
+- Kali Linux — atacante
+- Switch Layer 2
 
-**Network:**
-- Attacker: 192.168.1.100
-- Target: 192.168.1.1
+**Rede:**
 
----
-
-## ⚠️ Identified Vulnerabilities
-
-- Weak credentials (admin:1234)
-- No login attempt limitation
-- Legacy cryptographic algorithms enabled
-- Telnet enabled
-- No access control (ACL)
+- Atacante: `192.168.1.100`
+- Alvo: `192.168.1.1`
 
 ---
 
-## 💣 Attack Phase (Red Team)
+## ⚠️ Vulnerabilidades Identificadas
 
-- Network configuration (Kali)
-- Connectivity validation
-- SSH cryptographic downgrade
-- Wordlist creation
-- Hydra brute force attack
-
-👉 Result:
-Full administrative access gained in seconds.
+- Credenciais fracas: `admin:1234`
+- Ausência de limitação de tentativas de login
+- Algoritmos criptográficos legados habilitados
+- Telnet habilitado
+- Ausência de controle de acesso via ACL
 
 ---
 
-## 🛡️ Defense Phase (Blue Team)
+## 💣 Fase de Ataque — Red Team
 
-Implemented security controls:
+Atividades realizadas:
 
-- Strong password (secret)
-- Access control via ACL
-- Telnet disabled
-- SSH only
-- Login rate limiting (Quiet Mode)
+- Configuração de rede no Kali Linux
+- Validação de conectividade com o alvo
+- Downgrade criptográfico para compatibilidade com SSH legado
+- Criação de wordlist
+- Ataque de força bruta utilizando Hydra
 
----
+**Resultado:**
 
-## 🧪 Validation
-
-After mitigation:
-
-- Hydra attack blocked
-- SSH access restricted
-- Device remained available (ICMP)
+Foi obtido acesso administrativo completo ao dispositivo em poucos segundos.
 
 ---
 
-## 📸 Evidence
+## 🛡️ Fase de Defesa — Blue Team
 
-All lab screenshots are available in the `images/` folder.
+Foram implementados os seguintes controles de segurança:
 
----
-
-
-## 🧠 Key Takeaways
-
-- Weak credentials can compromise devices in seconds
-- Defense in Depth is essential
-- Rate limiting is critical against brute force attacks
+- Configuração de senha forte com `secret`
+- Controle de acesso via ACL
+- Desativação do Telnet
+- Uso exclusivo de SSH
+- Limitação de tentativas de login com Quiet Mode
 
 ---
 
-## ⚠️ Disclaimer
+## 🧪 Validação
 
-This project was conducted in a controlled lab environment for educational purposes only.
+Após a aplicação das mitigações:
+
+- O ataque com Hydra foi bloqueado
+- O acesso SSH ficou restrito a origens autorizadas
+- O dispositivo permaneceu disponível para validação de conectividade via ICMP
+
+---
+
+## 📸 Evidências
+
+Todas as capturas de tela do laboratório estão disponíveis na pasta `images/`.
+
+---
+
+## 🧠 Principais Aprendizados
+
+- Credenciais fracas podem comprometer dispositivos de rede em poucos segundos
+- Defense in Depth é essencial para reduzir riscos em ambientes corporativos
+- Limitação de tentativas de login é uma medida crítica contra ataques de força bruta
+- Telnet deve ser desabilitado em ambientes seguros
+- ACLs ajudam a restringir o acesso administrativo a dispositivos de rede
+
+---
+
+## ⚠️ Aviso Legal
+
+Este projeto foi conduzido em um ambiente de laboratório controlado, exclusivamente para fins educacionais e profissionais.
