@@ -97,18 +97,6 @@ Para reduzir o risco associado a essa vulnerabilidade, recomenda-se:
 
 ## 📸 Evidências
 
-### 🔎 Varredura com Nmap
-
-![Varredura Nmap](nmap-scan.png)
-
-### ⚠️ Verificação da Vulnerabilidade
-
-![Verificação MS17-010](ms17-010-scan.png)
-
-### 🚀 Exploração com Metasploit
-
-![Exploração Metasploit](metasploit-exploit.png)
-
 ### 🖥️ Acesso via Meterpreter
 
 ![Sessão Meterpreter](meterpreter-session.png)
