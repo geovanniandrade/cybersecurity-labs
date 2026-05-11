@@ -2,7 +2,7 @@
 
 Este projeto demonstra um laboratório prático de cibersegurança, simulando um ataque de força bruta via SSH contra um roteador Cisco IOS e a implementação de controles defensivos utilizando o conceito de **Defense in Depth**.
 
-> 📄 **Relatório Técnico:** [Visualizar PDF](./Relatorio_Tecnico.pdf)
+📄 **Relatório Técnico:** [Visualizar PDF](./Relatorio_Tecnico.pdf)
 
 ---
 
@@ -72,11 +72,6 @@ Após a aplicação das mitigações:
 - O acesso SSH ficou restrito a origens autorizadas
 - O dispositivo permaneceu disponível para validação de conectividade via ICMP
 
----
-
-## 📸 Evidências
-
-Todas as capturas de tela do laboratório estão disponíveis na pasta `images/`.
 
 ---
 
