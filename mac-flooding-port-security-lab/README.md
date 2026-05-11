@@ -1,102 +1,47 @@
-# 🚨 Incident Response Lab: MAC Flooding Attack (Port Security)
+# 🚨 Laboratório de Resposta a Incidente: Ataque MAC Flooding com Port Security
 
-## 🎯 Objective
-Simulate, detect, and mitigate a MAC Flooding attack in a controlled environment, replicating a real-world Layer 2 security incident from a SOC (Security Operations Center) perspective.
+## 🎯 Objetivo
 
----
-
-## 🧠 Scenario
-
-During normal network operations, users began experiencing:
-
-- Intermittent connectivity issues  
-- High latency  
-- Inconsistent access to internal systems  
-
-This behavior indicated a potential network anomaly, possibly related to a Layer 2 attack or switch misconfiguration.
+Simular, detectar e mitigar um ataque de **MAC Flooding** em um ambiente controlado, reproduzindo um incidente real de segurança em **Camada 2**, sob a perspectiva de um **SOC — Security Operations Center**.
 
 ---
 
-## 🚨 Detection
+## 🧠 Cenário
 
-The issue was identified through abnormal network behavior:
+Durante a operação normal da rede, usuários começaram a relatar:
 
-- Sudden degradation in network performance  
-- Increase in broadcast traffic  
-- Switch behaving similarly to a hub  
+- Instabilidade intermitente de conectividade
+- Alta latência
+- Acesso inconsistente a sistemas internos
 
-### Indicators of Compromise (IoCs):
-
-- Excessive MAC address entries  
-- Rapid CAM table changes  
-- Unknown MAC address flooding  
+Esse comportamento indicava uma possível anomalia de rede, possivelmente relacionada a um ataque em **Camada 2** ou a uma configuração incorreta no switch.
 
 ---
 
-## 🔍 Investigation
+## 🚨 Detecção
 
-To validate the hypothesis, a controlled lab environment was used.
+O incidente foi identificado a partir de comportamentos anormais na rede:
 
-### 🧪 Attack Simulation
+- Degradação repentina de desempenho
+- Aumento de tráfego broadcast
+- Switch apresentando comportamento semelhante ao de um hub
 
-- Tool: `macof` (Kali Linux)  
-- Objective: Overflow the switch CAM table with fake MAC addresses  
+### Indicadores de Comprometimento — IoCs
+
+- Excesso de entradas de endereços MAC
+- Mudanças rápidas na tabela CAM
+- Flooding de endereços MAC desconhecidos
+
+---
+
+## 🔍 Investigação
+
+Para validar a hipótese, foi utilizado um ambiente de laboratório controlado.
+
+### 🧪 Simulação do Ataque
+
+- **Ferramenta:** `macof` — Kali Linux
+- **Objetivo:** Sobrecarregar a tabela CAM do switch com endereços MAC falsos
 
 ```bash
 macof -i eth0
-```
-
-🔎 Observed Behavior:
-
-CAM table overflow
-Legitimate MAC addresses removed
-Switch started broadcasting traffic to all ports
-
-This confirmed the presence of a MAC Flooding attack.
-
-⏱️ Incident Timeline
-
-Users reported network instability
-Abnormal broadcast behavior identified
-Hypothesis: Layer 2 attack
-Attack reproduced in lab environment
-MAC Flooding confirmed
-Port Security implemented
-Network stabilized
-
-💥 Impact
-The attack caused:
-
-Network instability
-Loss of segmentation
-Increased broadcast traffic
-Potential exposure to packet sniffing
-Real-World Risks:
-Credential interception
-Data leakage
-Unauthorized lateral movement
-
-🛡️ Mitigation (Response)
-
-To contain the attack, Port Security was implemented on the switch.
-
-🔐 Security Controls Applied:
-
-Limit number of MAC addresses per port
-Restrict unauthorized devices
-Define violation actions (shutdown / restrict)
-Example Configuration:
-switchport port-security
-switchport port-security maximum 2
-switchport port-security violation shutdown
-
-## 📸 Evidence
-
-### 🔴 Attack Execution
-![MAC Flooding Attack](./attack.png)
-
-### 📊 Network Behavior
-![Switch Behavior](./topology.png)
-
-### 🛡️ Mitigation Applied
-![Port Security](./mitigation.png)
