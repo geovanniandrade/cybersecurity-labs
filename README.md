@@ -20,23 +20,23 @@ Desenvolver habilidades práticas em cibersegurança por meio de simulações de
 
 ## 🛡️ Blue Team
 
-- 🔍 Detecção de Brute Force com Wazuh
-- 📊 Avaliação de Vulnerabilidades (OpenVAS vs Nmap)
+- 🔍 [Detecção de Brute Force com Wazuh SIEM](./blue-team-brute-force-detection-wazuh)
+- 📊 [Avaliação de Vulnerabilidades com OpenVAS vs Nmap](./openvas-vs-nmap-vulnerability-assessment)
 
 ---
 
 ## 💣 Red Team
 
-- 💥 Exploração EternalBlue (MS17-010)
-- 🔓 Falhas de Controle de Acesso (Broken Access Control)
-- 🌐 Pentest em WordPress
-- 🔥 SSH Brute Force em Cisco IOS + Hardening
+- 💥 [Exploração EternalBlue — MS17-010](./eternalblue-ms17-010)
+- 🔓 [Pentest Web — Broken Access Control](./web-pentest-broken-access-control)
+- 🌐 [Pentest em WordPress](./wordpress-pentest)
+- 🔥 [SSH Brute Force em Cisco IOS + Hardening](./ssh-bruteforce-cisco-lab)
 
 ---
 
 ## 🟣 Purple Team
 
-- 🚨 Ataque de MAC Flooding & Mitigação (Port Security)
+- 🚨 [Ataque de MAC Flooding e Mitigação com Port Security](./mac-flooding-port-security-lab)
 
 ---
 
