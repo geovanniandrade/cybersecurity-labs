@@ -17,6 +17,10 @@ Os projetos foram desenvolvidos em ambientes controlados com foco em Blue Team, 
 ```
 
 ---
+![Blue Team](https://img.shields.io/badge/Blue%20Team-SOC-blue)
+![Wazuh](https://img.shields.io/badge/Wazuh-SIEM-purple)
+![Cisco](https://img.shields.io/badge/Cisco-IOS-red)
+![Metasploit](https://img.shields.io/badge/Metasploit-Framework-green)
 
 # 🛡️ 01 — Blue Team
 
