@@ -1,84 +1,91 @@
-# 🔐 Cybersecurity Labs - Geovanni Andrade
+# 🔐 Cybersecurity Labs — Geovanni Andrade
 
-Bem-vindo ao meu portfólio de cibersegurança, focado em laboratórios práticos que simulam cenários do mundo real nas operações de **Blue Team, Red Team e Purple Team**.
+Repositório focado em laboratórios práticos de cibersegurança, simulando cenários reais de defesa, exploração controlada, análise de vulnerabilidades, hardening e resposta a incidentes.
 
-Este repositório demonstra experiência prática em detecção de ameaças, avaliação de vulnerabilidades, exploração controlada, hardening, análise de riscos e resposta a incidentes, utilizando ferramentas e metodologias relevantes do mercado.
+Os projetos foram desenvolvidos em ambientes controlados com foco em Blue Team, SOC, Segurança de Redes, Vulnerability Management, Web Security, Exploração Controlada e Incident Response.
 
 ---
 
-## 🎯 Objetivo
+# 📂 Estrutura do Repositório
 
-Desenvolver habilidades práticas em cibersegurança por meio de simulações de cenários reais, com foco em:
+```text
+01-blue-team/
+02-vulnerability-management/
+03-network-security/
+04-web-security/
+05-exploitation-labs/
+```
 
-- Detecção e Análise de Ameaças
-- Resposta a Incidentes
+---
+
+# 🛡️ 01 — Blue Team
+
+| Laboratório | Foco Técnico |
+|---|---|
+| 🔍 [Wazuh SIEM — Brute Force Detection](./01-blue-team/blue-team-brute-force-detection-wazuh) | SIEM, logs, brute force e análise de eventos |
+
+---
+
+# 📊 02 — Vulnerability Management
+
+| Laboratório | Foco Técnico |
+|---|---|
+| 📈 [OpenVAS vs Nmap — Vulnerability Assessment](./02-vulnerability-management/openvas-vs-nmap-vulnerability-assessment) | Vulnerability Assessment, CVSS e análise de risco |
+
+---
+
+# 🌐 03 — Network Security
+
+| Laboratório | Foco Técnico |
+|---|---|
+| 🚨 [MAC Flooding + Port Security](./03-network-security/mac-flooding-port-security-lab) | Segurança Layer 2, mitigação e resposta a incidentes |
+| 🔥 [SSH Brute Force Cisco IOS](./03-network-security/ssh-bruteforce-cisco-lab) | Hardening, ACL, brute force e Defense in Depth |
+
+---
+
+# 🌍 04 — Web Security
+
+| Laboratório | Foco Técnico |
+|---|---|
+| 🔓 [Broken Access Control](./04-web-security/web-pentest-broken-access-control) | OWASP, controle de acesso e pentest web |
+| 🌐 [WordPress Pentest](./04-web-security/wordpress-pentest) | WPScan, enumeração e brute force controlado |
+
+---
+
+# 💥 05 — Exploitation Labs
+
+| Laboratório | Foco Técnico |
+|---|---|
+| 💣 [EternalBlue — MS17-010](./05-exploitation-labs/eternalblue-ms17-010) | SMB, Metasploit e exploração controlada |
+
+---
+
+# 🧠 Habilidades Demonstradas
+
+- Monitoramento e Detecção de Ameaças
+- SIEM e Correlação de Eventos
+- Vulnerability Assessment
+- Incident Response
+- Hardening
 - Segurança de Redes
-- Avaliação de Vulnerabilidades
-- Técnicas de Segurança Ofensiva
-- Hardening e Mitigação de Riscos
+- Segurança Web
+- Exploração Controlada
+- Análise de Logs
+- Segurança Defensiva e Ofensiva
+- Documentação Técnica com Evidências
 
 ---
 
-## 🛡️ Blue Team
+# 🛠️ Tecnologias Utilizadas
 
-- 🔍 [Detecção de Brute Force com Wazuh SIEM](./blue-team-brute-force-detection-wazuh)
-- 📊 [Avaliação de Vulnerabilidades com OpenVAS vs Nmap](./openvas-vs-nmap-vulnerability-assessment)
-
----
-
-## 💣 Red Team
-
-- 💥 [Exploração EternalBlue — MS17-010](./eternalblue-ms17-010)
-- 🔓 [Pentest Web — Broken Access Control](./web-pentest-broken-access-control)
-- 🌐 [Pentest em WordPress](./wordpress-pentest)
-- 🔥 [SSH Brute Force em Cisco IOS + Hardening](./ssh-bruteforce-cisco-lab)
-
----
-
-## 🟣 Purple Team
-
-- 🚨 [Ataque de MAC Flooding e Mitigação com Port Security](./mac-flooding-port-security-lab)
-
----
-
-## 📌 Visão Geral dos Laboratórios
-
-| Categoria | Laboratório | Foco Técnico |
-|---|---|---|
-| Blue Team | [Wazuh SIEM - Brute Force Detection](./blue-team-brute-force-detection-wazuh) | Detecção, logs, SIEM e análise de eventos |
-| Blue Team | [OpenVAS vs Nmap](./openvas-vs-nmap-vulnerability-assessment) | Vulnerability Assessment, CVSS e análise de risco |
-| Red Team | [EternalBlue MS17-010](./eternalblue-ms17-010) | Exploração controlada, SMB e Metasploit |
-| Red Team | [Broken Access Control](./web-pentest-broken-access-control) | Pentest web, OWASP e controle de acesso |
-| Red Team | [Pentest em WordPress](./wordpress-pentest) | Enumeração, WPScan e força bruta controlada |
-| Red Team / Blue Team | [SSH Brute Force Cisco IOS](./ssh-bruteforce-cisco-lab) | Ataque, hardening, ACL e Defense in Depth |
-| Purple Team | [MAC Flooding + Port Security](./mac-flooding-port-security-lab) | Ataque em Camada 2, resposta a incidente e mitigação |
-
----
-
-## 🧠 Habilidades Demonstradas
-
-- Monitoramento de Segurança e Detecção de Ameaças
-- Análise e Resposta a Incidentes
-- Análise de Logs e Correlação de Eventos
-- Análise de Tráfego de Rede
-- Identificação de Vulnerabilidades e Análise de Risco
-- Técnicas de Segurança Ofensiva e Defensiva
-- Hardening de dispositivos e serviços
-- Documentação técnica com evidências
-
----
-
-## 🛠️ Tecnologias e Conceitos
-
-### 🔐 Segurança e Detecção
+## 🔐 Segurança e Monitoramento
 
 - Wazuh SIEM
-- Análise de logs do Windows
-- Detecção de brute force
-- Correlação de eventos
-- Indicadores de Comprometimento — IoCs
+- Windows Event Logs
+- IoCs
+- Event Correlation
 
-### 🧪 Segurança Ofensiva
+## 🧪 Segurança Ofensiva
 
 - Kali Linux
 - Nmap
@@ -86,72 +93,52 @@ Desenvolver habilidades práticas em cibersegurança por meio de simulações de
 - WPScan
 - WhatWeb
 - Hydra
-- macof
 - Burp Suite
-- CyberChef
+- DIRB
+- macof
 
-### 🌐 Rede e Infraestrutura
+## 🌐 Rede e Infraestrutura
 
 - Cisco IOS
-- Switching de Camada 2
-- Tabela CAM
-- Port Security
 - ACL
+- Port Security
 - SSH Hardening
 - SMB
-- Windows Endpoint
+- Switching Layer 2
 
-### 🛠️ Simulação e Laboratório
+## 🖥️ Virtualização e Laboratório
 
 - GNS3
 - VirtualBox
 - Metasploitable
-- Ambientes vulneráveis controlados
+- Windows Endpoint
 
 ---
 
-## 📌 Projeto em Destaque
+# 🚀 Roadmap Futuro
 
-### 🚨 [Laboratório de Resposta a Incidente de MAC Flooding](./mac-flooding-port-security-lab)
+Próximos projetos planejados:
 
-Simulação de um ataque em **Camada 2**, com análise do comportamento da rede e implementação de mitigação utilizando **Port Security**.
-
-Este projeto demonstra um fluxo real de SOC:
-
-- Detecção
-- Investigação
-- Análise de impacto
-- Resposta
-- Mitigação
-- Validação
+- SOC Automation
+- Active Directory Security
+- Threat Hunting
+- Incident Response Playbooks
+- SIEM Correlation Labs
+- Network Segmentation
+- Hardening Baselines
+- Detection Engineering
 
 ---
 
-## 📈 Melhoria Contínua
+# ⚠️ Aviso Legal
 
-Este repositório é continuamente atualizado com novos laboratórios e cenários focados em desafios reais de cibersegurança.
+Todos os laboratórios deste repositório foram realizados em ambientes controlados, exclusivamente para fins educacionais e profissionais.
 
-O objetivo é evoluir este portfólio com novos estudos práticos envolvendo:
-
-- Blue Team
-- SOC
-- Gestão de Vulnerabilidades
-- Segurança de Redes
-- Resposta a Incidentes
-- Hardening
-- Segurança Ofensiva Controlada
+Nenhuma técnica demonstrada deve ser utilizada contra ambientes de terceiros sem autorização formal.
 
 ---
 
-## ⚠️ Aviso Legal
-
-Todos os laboratórios deste repositório foram realizados em ambientes controlados, com finalidade exclusivamente educacional e profissional.
-
-Nenhuma técnica demonstrada deve ser aplicada em ambientes de terceiros sem autorização formal.
-
----
-
-## 🤝 Conecte-se comigo
+# 🤝 Conecte-se comigo
 
 - 💼 LinkedIn: [Geovanni G. O. Andrade](https://www.linkedin.com/in/geovanni-g-o-andrade/)
 - 💻 GitHub: [geovanniandrade](https://github.com/geovanniandrade)
