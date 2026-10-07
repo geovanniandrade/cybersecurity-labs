@@ -1,0 +1,84 @@
+name: DevSecOps AP II
+on:
+  push:
+    branches: [main, feat/devsecops-ap-ii]
+    paths: ['06-devsecops/secure-ci-cd/**', '.github/workflows/devsecops-ap-ii.yml']
+  pull_request:
+    paths: ['06-devsecops/secure-ci-cd/**', '.github/workflows/devsecops-ap-ii.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: devsecops-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  secure-delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: 06-devsecops/secure-ci-cd
+        shell: bash
+    env:
+      APP_VERSION: ${{ github.sha }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build da aplicação
+        run: |
+          mkdir -p evidence
+          python -m pip install -r requirements-dev.txt
+          python -m compileall -q app
+          python --version > evidence/tool-versions.txt
+          python -m bandit --version >> evidence/tool-versions.txt
+      - name: Testes automatizados
+        run: python -m unittest discover -s tests -v 2>&1 | tee evidence/tests.txt
+      - name: Achado didático B307
+        run: |
+          set +e
+          python -m bandit -r security-fixtures -f json -o evidence/bandit-fixture.json
+          status=$?
+          set -e
+          if [ "$status" -ne 1 ]; then echo "Esperado exit code 1 por achado, recebido $status"; exit 1; fi
+          python scripts/verify_finding.py | tee evidence/finding.txt
+      - name: Gate de segurança da aplicação
+        run: python -m bandit -r app -ll -f json -o evidence/bandit-app.json
+      - name: Construir imagem Docker
+        run: |
+          docker build -t techsecure:$APP_VERSION . 2>&1 | tee evidence/docker-build.txt
+          docker image inspect techsecure:$APP_VERSION > evidence/image.json
+      - name: Deploy automático em ambiente temporário
+        run: |
+          docker run -d --name techsecure --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m --cap-drop ALL --security-opt no-new-privileges --memory 128m --cpus 1 -p 127.0.0.1:8080:8080 -e APP_VERSION techsecure:$APP_VERSION
+          python scripts/smoke.py | tee evidence/smoke.json
+          docker inspect techsecure > evidence/container.json
+      - name: Capturar aplicação funcionando
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          python scripts/screenshot.py
+      - name: Resumo da execução
+        run: |
+          echo '### TechSecure DevSecOps Lab' >> "$GITHUB_STEP_SUMMARY"
+          echo "Commit implantado: $APP_VERSION" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Build, testes, Bandit, imagem, container e smoke test concluídos. Deploy temporário no runner, sem URL pública persistente.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Coletar logs
+        if: always()
+        run: |
+          if docker inspect techsecure >/dev/null 2>&1; then docker logs techsecure > evidence/container.log 2>&1; fi
+      - name: Preservar evidências
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: devsecops-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: 06-devsecops/secure-ci-cd/evidence/
+          retention-days: 30
+      - name: Encerrar container temporário
+        if: always()
+        run: docker rm -f techsecure || true
