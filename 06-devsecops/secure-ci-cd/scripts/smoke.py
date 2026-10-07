@@ -2,6 +2,7 @@
 import json
 import os
 import time
+from http.client import RemoteDisconnected
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
@@ -15,7 +16,7 @@ for attempt in range(30):
     try:
         health = get("/health")
         break
-    except (URLError, TimeoutError):
+    except (URLError, TimeoutError, ConnectionError, RemoteDisconnected):
         time.sleep(1)
 else:
     raise SystemExit("Container não respondeu em 30 tentativas.")
