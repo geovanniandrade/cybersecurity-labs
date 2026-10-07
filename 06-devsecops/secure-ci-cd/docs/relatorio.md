@@ -4,7 +4,7 @@
 
 Disciplina: DevSecOps — Avaliação Parcial II. Professor: Alecsandre Camilo Rosa. Entrega e apresentação: 19 de outubro de 2026. Integrantes, RA, instituição e turma: preencher com os dados do grupo antes da entrega.
 
-Este documento descreve a implementação da prova de conceito TechSecure. Os resultados locais já verificados são separados das evidências de CI e Docker, que precisam ser anexadas após uma execução real.
+Este documento descreve a implementação da prova de conceito TechSecure. Os testes locais e o fluxo completo no GitHub Actions foram verificados. Os dados dos integrantes e o vídeo ainda precisam ser completados.
 
 ## Objetivo
 
@@ -46,19 +46,19 @@ A mitigação implementada em app/calculator.py define uma gramática restrita p
 
 ## Resultados e evidências
 
-Na validação local de 7 de outubro de 2026, os dez testes automatizados passaram. O Bandit identificou B307 na amostra didática, com severidade média e confiança alta. O gate da aplicação não identificou achados médios ou altos. Esses resultados cobrem os testes e o scan locais, sem comprovar a imagem Docker ou o deploy no CI.
+Na validação local de 7 de outubro de 2026, os dez testes automatizados passaram. O Bandit identificou B307 na amostra didática, com severidade média e confiança alta. O gate da aplicação não identificou achados médios ou altos. O fluxo completo também foi aprovado no GitHub Actions em 07/10/2026, no run 37698222175. Build, testes, scan, imagem Docker, deploy, smoke test e screenshot foram concluídos. URL da execução: https://github.com/geovanniandrade/cybersecurity-labs/actions/runs/37698222175
 
-Completar após a execução: URL do run, SHA analisado, resultado de cada etapa, identificação da imagem, logs do container, smoke.json e screenshot. Acrescentar prints do run aprovado e do run bloqueado pelo gate. Não declarar a entrega concluída enquanto essas evidências estiverem pendentes.
+O artifact devsecops-evidence-37698222175-1 contém os resultados reais. O smoke test registrou status ok, soma 30 e rejeição de entrada com HTTP 400. A versão implantada foi 38d77ab09fc1f1bdf73fdcc6d3024011910294a4, o commit de merge de teste. A imagem identificada foi sha256:8a4363e73b89e767b6a8106dc988b5fd42a92ff1ed5976f7bf4963f92097fc38. A inspeção confirmou usuário 10001:10001 e sistema de arquivos somente leitura. O print real acompanha o README. Acrescentar os prints da interface da pipeline e a demonstração de bloqueio antes da entrega.
 
 ## Dificuldades e limitações
 
-A preparação foi validada em um ambiente sem Docker disponível. Por esse motivo, o build da imagem e o container devem ser comprovados no GitHub Actions ou no computador do grupo. Registrar aqui as dificuldades realmente observadas nessas execuções, suas causas e as soluções aplicadas.
+O ambiente de preparação não possuía Docker; o build e o deploy foram validados no GitHub Actions. A primeira execução encontrou ConnectionResetError durante a inicialização HTTP do container. A correção incluiu esse erro transitório na política de tentativas do smoke test, mantendo o limite de 30 tentativas. A execução seguinte aprovou o fluxo completo.
 
 A imagem base utiliza uma tag mutável. Para maior reprodutibilidade, uma evolução pode fixar seu digest e automatizar atualizações. As Actions também usam tags de versão; uma evolução de hardening pode fixar SHAs completos. Bandit não cobre vulnerabilidades da imagem base ou todas as falhas da aplicação. O servidor WSGI é educacional e não deve ser usado como referência de produção.
 
 ## Conclusão
 
-A implementação conecta versionamento, validação funcional e análise de segurança antes do deploy. A correção de eval por validação restrita demonstra como um controle de entrada pode ser verificado junto à automação. A conclusão experimental sobre o fluxo completo deve ser confirmada com os artefatos reais da execução em Docker, incluindo a alteração do código e a nova versão implantada.
+A implementação conecta versionamento, validação funcional e análise de segurança antes do deploy. A correção de eval por validação restrita demonstra como um controle de entrada pode ser verificado junto à automação. A execução aprovada confirmou o fluxo completo até o container e a captura visual da aplicação. A apresentação deve reproduzir uma alteração visível, commit e push para demonstrar a atualização ao grupo avaliador.
 
 ## Referências
 

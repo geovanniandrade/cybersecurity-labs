@@ -4,7 +4,11 @@
 
 Laboratório da empresa fictícia **TechSecure Solutions**. Cada alteração inicia uma esteira que prepara o código, testa a aplicação, identifica um achado didático, aplica um gate de segurança e implanta a versão validada em Docker.
 
-**Estado:** implementação preparada; consulte a execução do GitHub Actions para confirmar build da imagem e deploy. O container do CI existe durante o job e é encerrado ao final. Não há hospedagem pública permanente.
+**Estado:** fluxo completo validado em [execução aprovada](https://github.com/geovanniandrade/cybersecurity-labs/actions/runs/37698222175) em 07/10/2026. Build, testes, scan, imagem, deploy, validação HTTP e screenshot concluídos. O container do CI existe durante o job e é encerrado ao final. Não há hospedagem pública permanente.
+
+![Aplicação funcionando em Docker](docs/images/application.png)
+
+Print real da execução aprovada. A versão exibida corresponde ao commit de merge de teste do pull request.
 
 ## 🎯 O que este projeto demonstra
 

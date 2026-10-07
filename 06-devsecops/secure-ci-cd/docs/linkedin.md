@@ -12,7 +12,7 @@ Um dos pontos do laboratório é a análise do uso inseguro de eval() e sua corr
 
 O deploy do CI é temporário, realizado no runner do GitHub. Os resultados ficam documentados no repositório, com código, Dockerfile, workflow e evidências da aplicação.
 
-Projeto: [inserir URL definitiva do laboratório]
+Projeto: https://github.com/geovanniandrade/cybersecurity-labs/tree/feat/devsecops-ap-ii/06-devsecops/secure-ci-cd
 
 #DevSecOps #AppSec #GitHubActions #Docker #Python #Cibersegurança
 
