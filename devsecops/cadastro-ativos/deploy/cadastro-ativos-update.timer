@@ -1,0 +1,10 @@
+[Unit]
+Description=Verificar versao aprovada do Cadastro de Ativos a cada minuto
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=1min
+Unit=cadastro-ativos-update.service
+
+[Install]
+WantedBy=timers.target
