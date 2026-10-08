@@ -1,0 +1,10 @@
+[Unit]
+Description=Atualizar Cadastro de Ativos com imagem aprovada
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/docker01/cadastro-ativos/deploy/update.sh
+TimeoutStartSec=15min

@@ -4,3 +4,5 @@ __pycache__/
 data/
 .env
 backups/
+reports/
+.deployed-commit

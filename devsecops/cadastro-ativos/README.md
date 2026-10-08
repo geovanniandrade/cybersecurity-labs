@@ -2,7 +2,7 @@
 
 **Python · Flask · SQLite · Docker | AP II DevSecOps**
 
-> Aplicação pronta para revisão. Pipeline e deploy automático ainda em desenvolvimento.
+> Dashboard executado na VM. Workflow e atualizador implementados; execução remota e ativação do timer ainda precisam de validação.
 
 Aplicação para controlar equipamentos, responsáveis, localização e valores de aquisição. Projeto acadêmico AP II DevSecOps.
 
@@ -35,8 +35,8 @@ Aplicação para controlar equipamentos, responsáveis, localização e valores 
 ## Documentação
 
 - [Arquitetura e persistência](docs/arquitetura.md)
-- [Pipeline planejada](docs/pipeline.md)
-- [Controles de segurança e análise pendente](docs/seguranca.md)
+- [Pipeline e deploy automático](docs/pipeline.md)
+- [Controles e análise de segurança](docs/seguranca.md)
 - [Validação realizada](docs/validacao.md)
 - [Prévias desktop, ficha e celular](docs/preview/)
 
@@ -116,7 +116,7 @@ Abrir a tela de remoção não exclui nada. A exclusão exige marcar a confirma�
 
 11 testes automatizados passaram, incluindo uma migração a partir do esquema da versão inicial. Cadastro, edição, busca e remoção também foram verificados no navegador Chromium em uma aplicação servida por Gunicorn; layout inspecionado em desktop e celular. Os testes usam bancos temporários. Os dados de demonstração usados na prévia não são inseridos automaticamente.
 
-Build Docker desta nova versão e migração do volume real ainda devem ser verificados na VM. A aplicação destina-se ao laboratório local, sem autenticação. Pipeline, análise automatizada de segurança, deploy automático, relatório e evidências finais são as próximas etapas do projeto. Este pacote não contém workflow CI/CD.
+O usuário confirmou o dashboard atualizado na VM após o build Docker manual. A aplicação destina-se ao laboratório local, sem autenticação. O workflow CI/CD e os arquivos do deploy automático estão implementados; a execução no Actions e a ativação do timer ainda precisam de validação. Relatório, achado real de segurança e evidências finais continuam pendentes.
 
 ## Referências
 
