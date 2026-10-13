@@ -10,7 +10,17 @@ Os projetos foram desenvolvidos em ambientes controlados com foco em Blue Team, 
 
 ---
 
-# 📂 Estrutura do Repositório
+## ⭐ Projetos em Destaque
+
+| Projeto | Foco técnico |
+|---|---|
+| [MAC Flooding + Port Security](./03-network-security/mac-flooding-port-security-lab) | Segurança de redes em camada 2, mitigação e resposta a incidentes |
+| [SSH Brute Force — Cisco IOS](./03-network-security/ssh-bruteforce-cisco-lab) | Hardening, ACL e defesa em profundidade |
+| [Detecção de Força Bruta — Wazuh](./01-blue-team/blue-team-brute-force-detection-wazuh) | Monitoramento de eventos Windows e análise de alertas |
+
+---
+
+## 📂 Estrutura do Repositório
 
 ```text
 01-blue-team/
