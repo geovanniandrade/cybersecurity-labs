@@ -3,7 +3,8 @@ LABEL org.opencontainers.image.source="https://github.com/geovanniandrade/cybers
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 DATABASE_PATH=/app/data/ativos.sqlite3
 WORKDIR /app
 COPY requirements.lock .
-RUN pip install --no-cache-dir -r requirements.lock \
+RUN python -m pip install --no-cache-dir --upgrade pip==26.2.1 \
+    && python -m pip install --no-cache-dir -r requirements.lock \
     && groupadd --gid 10001 appuser \
     && useradd --uid 10001 --gid appuser --no-create-home appuser \
     && mkdir -p /app/data \
