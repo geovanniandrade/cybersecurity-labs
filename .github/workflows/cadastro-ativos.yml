@@ -65,6 +65,39 @@ jobs:
         run: |
           docker build --pull --label "org.opencontainers.image.revision=$COMMIT" \
             -t ativos-ci devsecops/cadastro-ativos
+      - name: Trivy - analisar imagem completa
+        run: |
+          mkdir -p image-reports
+          docker image inspect ativos-ci > image-reports/image-inspect.json
+          docker pull aquasec/trivy:0.75.0
+          docker image inspect --format '{{index .RepoDigests 0}}' aquasec/trivy:0.75.0 > image-reports/trivy-image.txt
+          docker run --rm aquasec/trivy:0.75.0 --version > image-reports/trivy-version.txt
+          docker save ativos-ci -o "$RUNNER_TEMP/ativos-image.tar"
+          docker run --rm \
+            -v "$RUNNER_TEMP/ativos-image.tar:/image.tar:ro" \
+            -v "$PWD/image-reports:/reports" \
+            aquasec/trivy:0.75.0 image \
+            --input /image.tar --scanners vuln --timeout 10m \
+            --format json --exit-code 0 --output /reports/trivy-image.json
+      - name: Trivy - bloquear altos e criticos com correcao
+        run: |
+          status=0
+          docker run --rm -v "$PWD/image-reports:/reports" \
+            aquasec/trivy:0.75.0 convert \
+            --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed \
+            --exit-code 1 --format table --output /reports/trivy-gate.txt \
+            /reports/trivy-image.json || status=$?
+          if [ -f image-reports/trivy-gate.txt ]; then
+            cat image-reports/trivy-gate.txt
+          fi
+          exit "$status"
+      - name: Guardar relatorios da imagem
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: imagem-seguranca-${{ github.sha }}
+          path: image-reports/
+          retention-days: 30
       - name: Testar container
         run: |
           docker run --rm ativos-ci python -c "import importlib.util; import flask, gunicorn; assert importlib.util.find_spec('pip') is None, 'pip permanece na imagem final'"

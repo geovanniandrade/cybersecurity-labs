@@ -9,12 +9,14 @@ O workflow `.github/workflows/cadastro-ativos.yml` roda no GitHub Actions. O dep
 | Testes | Executar unittest: CRUD, migração, filtros e validações | Qualquer teste falhando |
 | Bandit 1.9.4 | Analisar app.py e gerar JSON | Qualquer achado ou erro |
 | pip-audit 2.10.1 | Analisar dependências e gerar JSON | Qualquer vulnerabilidade ou erro |
-| Imagem | Construir Docker e testar /health | Build ou health falhando |
+| Imagem | Construir Docker | Build falhando |
+| Trivy 0.75.0 | Analisar pacotes do SO e Python da imagem antes de publicar | Erro de análise ou achado HIGH/CRITICAL com correção disponível |
+| Teste do container | Confirmar ausência de pip, importar Flask/Gunicorn e testar /health | Falha de verificação ou health |
 | Publicação | Enviar tags sha-<commit> e approved ao GHCR | Apenas push/dispatch na branch; PR não publica |
 | Deploy | Comparar imagens, fazer backup SQLite e trocar container | Falha no pull/backup conserva container atual |
 | Verificação | Esperar até 120 segundos por healthy | Falha tenta restaurar imagem anterior |
 
-Relatórios ficam nos artifacts por 30 dias, inclusive se um scanner falhar. Baixe-os para o trabalho. Esta configuração analisa código e dependências Python; não analisa CVEs dos pacotes do sistema operacional da imagem.
+Relatórios ficam nos artifacts por 30 dias, inclusive se um scanner falhar. Baixe-os para o trabalho. O Trivy também analisa os pacotes do sistema operacional da imagem e bibliotecas Python identificadas. O artifact imagem-seguranca-<commit> contém JSON completo de todas as severidades, relatório do bloqueio, identidade da imagem e versão do scanner. Achados sem correção e severidades menores continuam no JSON: não foram resolvidos nem declarados seguros.
 
 ## Configuração inicial da VM
 
@@ -61,3 +63,11 @@ Os comandos mostram o histórico, identificam o commit implantado e pausam atual
 Altere um texto visível no template e faça push na branch. Capture testes, scanners, build/publicação no Actions, logs do updater, healthy, dashboard alterado e permanência de um ativo. Alterações rejeitadas não publicam a tag approved.
 
 Arquivos implementados não comprovam execução remota. A primeira execução no Actions e o deploy pelo timer precisam ser confirmados no ambiente real. O deploy anterior do dashboard foi manual. A configuração continua na branch de trabalho, sem merge em main.
+
+## Política do Trivy
+
+A análise usa um arquivo Docker exportado da mesma imagem que será publicada, sem disponibilizar o socket Docker ao scanner. Primeiro gera JSON completo sem filtrar achados; em seguida, converte esse mesmo resultado com HIGH,CRITICAL e ignore-unfixed, retornando falha se houver achados bloqueantes. Erros no download, no scanner ou na conversão também interrompem a publicação. Não há continue-on-error nem lista de CVEs ignoradas.
+
+O arquivo tar é temporário no runner e não é enviado aos artifacts. O relatório completo é preservado mesmo quando o bloqueio reprova a imagem. A aprovação do gate não significa imagem sem vulnerabilidades; os demais achados precisam de avaliação e acompanhamento. A tag approved permanece na última versão aprovada quando a nova é rejeitada.
+
+O pip é usado na instalação durante o build e removido da imagem de execução, incluindo suas bibliotecas embutidas. Os testes verificam que Flask e Gunicorn importam e que pip não está disponível. Atualizações de dependências são feitas no build e entregues pelo pipeline.
