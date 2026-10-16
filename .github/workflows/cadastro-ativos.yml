@@ -75,6 +75,7 @@ jobs:
           docker save ativos-ci -o "$RUNNER_TEMP/ativos-image.tar"
           docker run --rm \
             -v "$RUNNER_TEMP/ativos-image.tar:/image.tar:ro" \
+            -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" \
             -v "$PWD/image-reports:/reports" \
             aquasec/trivy:0.75.0 image \
             --input /image.tar --scanners vuln --timeout 10m \
@@ -82,11 +83,14 @@ jobs:
       - name: Trivy - bloquear altos e criticos com correcao
         run: |
           status=0
-          docker run --rm -v "$PWD/image-reports:/reports" \
-            aquasec/trivy:0.75.0 convert \
+          docker run --rm \
+            -v "$RUNNER_TEMP/ativos-image.tar:/image.tar:ro" \
+            -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" \
+            -v "$PWD/image-reports:/reports" \
+            aquasec/trivy:0.75.0 image \
+            --input /image.tar --skip-db-update --timeout 10m \
             --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed \
-            --exit-code 1 --format table --output /reports/trivy-gate.txt \
-            /reports/trivy-image.json || status=$?
+            --exit-code 1 --format table --output /reports/trivy-gate.txt || status=$?
           if [ -f image-reports/trivy-gate.txt ]; then
             cat image-reports/trivy-gate.txt
           fi

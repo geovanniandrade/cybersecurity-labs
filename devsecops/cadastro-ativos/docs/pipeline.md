@@ -66,7 +66,7 @@ Arquivos implementados não comprovam execução remota. A primeira execução n
 
 ## Política do Trivy
 
-A análise usa um arquivo Docker exportado da mesma imagem que será publicada, sem disponibilizar o socket Docker ao scanner. Primeiro gera JSON completo sem filtrar achados; em seguida, converte esse mesmo resultado com HIGH,CRITICAL e ignore-unfixed, retornando falha se houver achados bloqueantes. Erros no download, no scanner ou na conversão também interrompem a publicação. Não há continue-on-error nem lista de CVEs ignoradas.
+A análise usa um arquivo Docker exportado da mesma imagem que será publicada, sem disponibilizar o socket Docker ao scanner. Primeiro gera JSON completo sem filtrar achados; em seguida, analisa o mesmo arquivo tar com a mesma base de vulnerabilidades em cache (skip-db-update), HIGH,CRITICAL e ignore-unfixed, retornando falha se houver achados bloqueantes. Erros no download, no scanner ou no gate também interrompem a publicação. Não há continue-on-error nem lista de CVEs ignoradas.
 
 O arquivo tar é temporário no runner e não é enviado aos artifacts. O relatório completo é preservado mesmo quando o bloqueio reprova a imagem. A aprovação do gate não significa imagem sem vulnerabilidades; os demais achados precisam de avaliação e acompanhamento. A tag approved permanece na última versão aprovada quando a nova é rejeitada.
 
