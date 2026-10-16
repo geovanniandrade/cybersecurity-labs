@@ -67,7 +67,7 @@ jobs:
             -t ativos-ci devsecops/cadastro-ativos
       - name: Testar container
         run: |
-          docker run --rm ativos-ci python -c "import pip; assert pip.__version__ == '26.2.1', pip.__version__"
+          docker run --rm ativos-ci python -c "import importlib.util; import flask, gunicorn; assert importlib.util.find_spec('pip') is None, 'pip permanece na imagem final'"
           docker run -d --name ativos-check -p 127.0.0.1:18080:8080 ativos-ci
           for attempt in $(seq 1 30); do
             if curl --fail --silent http://127.0.0.1:18080/health; then exit 0; fi

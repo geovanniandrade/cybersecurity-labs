@@ -5,6 +5,7 @@ WORKDIR /app
 COPY requirements.lock .
 RUN python -m pip install --no-cache-dir --upgrade pip==26.2.1 \
     && python -m pip install --no-cache-dir -r requirements.lock \
+    && python -m pip uninstall --yes pip \
     && groupadd --gid 10001 appuser \
     && useradd --uid 10001 --gid appuser --no-create-home appuser \
     && mkdir -p /app/data \
