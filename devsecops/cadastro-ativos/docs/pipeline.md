@@ -62,7 +62,9 @@ Os comandos mostram o histórico, identificam o commit implantado e pausam atual
 
 Altere um texto visível no template e faça push na branch. Capture testes, scanners, build/publicação no Actions, logs do updater, healthy, dashboard alterado e permanência de um ativo. Alterações rejeitadas não publicam a tag approved.
 
-Arquivos implementados não comprovam execução remota. A primeira execução no Actions e o deploy pelo timer precisam ser confirmados no ambiente real. O deploy anterior do dashboard foi manual. A configuração continua na branch de trabalho, sem merge em main.
+A execução #11 passou nos testes, scanners, build e publicação. O commit `0b608c6671521b26f66bb4703f727436d55e9ef1` foi confirmado na VM, com container healthy e consultas automáticas pelo timer. [Ver execução validada](https://github.com/geovanniandrade/cybersecurity-labs/actions/runs/38828875060). A configuração continua na branch de trabalho, sem merge em main.
+
+Para reproduzir a instalação, o acesso e a operação, consulte [Como fazer — passo a passo](como-fazer.md).
 
 ## Política do Trivy
 

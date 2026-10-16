@@ -2,11 +2,25 @@
 
 **Python · Flask · SQLite · Docker | AP II DevSecOps**
 
-> Dashboard executado na VM. Workflow e atualizador implementados; execução remota e ativação do timer ainda precisam de validação.
+> Aplicação, esteira com testes e segurança, publicação Docker e deploy automático validados na VM em 15/10/2026.
 
 Aplicação para controlar equipamentos, responsáveis, localização e valores de aquisição. Projeto acadêmico AP II DevSecOps.
 
 ![Dashboard com dados fictícios](docs/preview/Dashboard_Ativos_TI.png)
+
+## 🛠️ Como fazer — passo a passo
+
+**[Abrir o guia completo: do ambiente ao deploy automático](docs/como-fazer.md)**
+
+Aprenda a preparar a VM, conectar pelo PowerShell, executar o dashboard, acompanhar a esteira e validar o deploy. Cada etapa mostra onde executar, o comando, sua finalidade e o resultado esperado.
+
+| Quero… | Onde encontrar |
+| --- | --- |
+| Reproduzir desde o início | [Guia completo](docs/como-fazer.md) |
+| Usar o laboratório já instalado | [Uso diário](docs/como-fazer.md#9-uso-diário) |
+| Entender a esteira e o Trivy | [Etapas da esteira](docs/como-fazer.md#6-entender-e-acompanhar-a-esteira) |
+| Conferir o deploy automático | [Validação de ponta a ponta](docs/como-fazer.md#10-validar-uma-atualização-de-ponta-a-ponta) |
+| Resolver um erro | [Problemas comuns](docs/como-fazer.md#13-problemas-comuns) |
 
 ## O que esta versão oferece
 
@@ -30,7 +44,10 @@ Aplicação para controlar equipamentos, responsáveis, localização e valores 
 | `static/style.css` | Layout e adaptação para telas pequenas |
 | `tests/test_app.py` | Testes de comportamento, migração, valores e entradas |
 | `Dockerfile` | Imagem Python + Flask + Gunicorn com usuário sem privilégios |
-| `compose.yaml` | Container local, porta 8080, volume persistente e reinício |
+| `compose.yaml` | Primeira execução/build local, porta 8080 e volume persistente |
+| `compose.deploy.yaml` | Execução da imagem aprovada com o volume existente |
+| `deploy/` | Script de atualização e serviço/timer systemd |
+| `.github/workflows/cadastro-ativos.yml` na raiz do repositório | Esteira com testes, Bandit, pip-audit, Trivy e publicação |
 
 ## Documentação
 
@@ -54,7 +71,7 @@ Python 3.12, no Linux:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.lock
 python -m unittest discover -s tests -v
 flask --app 'app:create_app()' run --port 8080
 ```
@@ -62,6 +79,8 @@ flask --app 'app:create_app()' run --port 8080
 Abra http://127.0.0.1:8080. Flask CLI é para desenvolvimento; o container usa Gunicorn.
 
 ## Docker
+
+Os comandos abaixo são para a primeira execução. Depois de habilitar o updater, acompanhe o deploy pela [etapa de uso diário](docs/como-fazer.md#9-uso-diário) e não substitua a imagem aprovada por um build local.
 
 ```bash
 docker compose up -d --build
@@ -76,37 +95,15 @@ ssh -N -L 8080:127.0.0.1:8080 docker01@127.0.0.1 -p 2200
 
 Abra http://127.0.0.1:8080 no Windows. O Juice Shop permanece separado na porta 3000.
 
-## Atualizar a versão inicial preservando os registros
+## Atualização e persistência
 
-A migração da versão inicial foi testada com um banco temporário. Antes de atualizar a VM, faça backup e mantenha o mesmo nome de projeto e volume.
+Siga o [passo a passo de deploy](docs/como-fazer.md#7-preparar-a-imagem-aprovada-para-a-vm). O atualizador faz backup antes da troca e usa o volume `cadastro-ativos_ativos_data`.
 
-1. Obtenha o código desta branch. Para a primeira atualização da VM, você também pode usar o pacote `Cadastro_Ativos_Dashboard_v2.zip` com a pasta `cadastro-ativos` preparada para transferência via SCP.
-2. Na VM, faça uma cópia do banco antes de iniciar a nova versão:
+A migração da versão inicial adiciona colunas sem apagar os registros ou alterar IDs e datas. Ativos antigos recebem status inicial **Disponível**; revise o status pela edição. Campos adicionais ficam vazios e valores ficam não informados.
 
-```bash
-cd /home/docker01/cadastro-ativos
-mkdir -p backups
-docker compose exec -T web python -c "import os, sqlite3; source=sqlite3.connect(os.environ['DATABASE_PATH']); target=sqlite3.connect('/tmp/ativos-backup.sqlite3'); source.backup(target); target.close(); source.close()"
-docker compose cp web:/tmp/ativos-backup.sqlite3 "backups/ativos-$(date +%Y%m%d-%H%M%S).sqlite3"
-```
+Após reiniciar a aplicação, recarregue formulários antigos para obter uma nova sessão/CSRF.
 
-A API de backup do SQLite produz uma cópia consistente mesmo com o banco aberto. Se um comando falhar, resolva antes de prosseguir.
-
-3. Extraia o novo pacote sobre a mesma pasta:
-
-```bash
-cd /home/docker01
-python3 -m zipfile -e Cadastro_Ativos_Dashboard_v2.zip .
-cd cadastro-ativos
-docker compose up -d --build
-docker compose ps
-```
-
-O projeto Compose continua chamado `cadastro-ativos`, com o volume `cadastro-ativos_ativos_data`. A migração adiciona colunas sem apagar registros, alterar IDs ou datas. Os ativos antigos recebem status inicial **Disponível**; revise seu status pela edição. Campos extras ficam vazios e o valor fica não informado.
-
-Atualize o navegador antes de salvar um formulário. A chave de sessão é gerada ao iniciar se `APP_SECRET` não estiver definida, então formulários anteriores à reinicialização expiram.
-
-**Não use `docker compose down -v`: a opção remove o volume e o banco.** O banco, backups e dados de teste não devem ser publicados no Git nem entrar na imagem.
+**Não use `docker compose down -v`: essa opção remove o volume do Compose local e o banco.** Não publique bancos ou backups no Git.
 
 ## Remoção
 
@@ -116,7 +113,9 @@ Abrir a tela de remoção não exclui nada. A exclusão exige marcar a confirma�
 
 11 testes automatizados passaram, incluindo uma migração a partir do esquema da versão inicial. Cadastro, edição, busca e remoção também foram verificados no navegador Chromium em uma aplicação servida por Gunicorn; layout inspecionado em desktop e celular. Os testes usam bancos temporários. Os dados de demonstração usados na prévia não são inseridos automaticamente.
 
-O usuário confirmou o dashboard atualizado na VM após o build Docker manual. A aplicação destina-se ao laboratório local, sem autenticação. O workflow CI/CD e os arquivos do deploy automático estão implementados; a execução no Actions e a ativação do timer ainda precisam de validação. Relatório, achado real de segurança e evidências finais continuam pendentes.
+A execução [#11 do Actions](https://github.com/geovanniandrade/cybersecurity-labs/actions/runs/38828875060) concluiu testes, scanners, build e publicação. O commit `0b608c6` foi confirmado na VM com container healthy e timer ativo. Foram identificados achados reais no pip e em bibliotecas embutidas; o pip foi removido da imagem final. A aprovação do Trivy segue o critério HIGH/CRITICAL com correção disponível, não uma declaração de ausência de vulnerabilidades.
+
+A aplicação destina-se ao laboratório local, sem autenticação. O relatório acadêmico final, a consolidação das evidências e o vídeo continuam sendo entregáveis separados.
 
 ## Referências
 
