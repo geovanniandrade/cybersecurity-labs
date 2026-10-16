@@ -1,0 +1,17 @@
+{% macro icon(name, size=20) -%}<svg class="icon" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{% if name == 'grid' %}<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+{% elif name == 'box' %}<path d="m12 3 9 5-9 5-9-5 9-5Z M3 8v9l9 5 9-5V8 M12 13v9 M7.5 5.5l9 5"/>
+{% elif name == 'plus' %}<path d="M12 5v14 M5 12h14"/>
+{% elif name == 'check' %}<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>
+{% elif name == 'tool' %}<path d="M14 6a5 5 0 0 0-6 6L3 17a3 3 0 0 0 4 4l5-5a5 5 0 0 0 6-6l-3 3-4-4 3-3Z"/>
+{% elif name == 'laptop' %}<rect x="4" y="4" width="16" height="12" rx="2"/><path d="M2 20h20 M9 16v4 M15 16v4"/>
+{% elif name == 'arrow' %}<path d="M5 12h14 m-6-6 6 6-6 6"/>
+{% elif name == 'back' %}<path d="M19 12H5 m6-6-6 6 6 6"/>
+{% elif name == 'edit' %}<path d="m15 4 5 5 M4 20l5-1L21 7a2 2 0 0 0-4-4L5 15l-1 5Z"/>
+{% elif name == 'shield' %}<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z m-4 9 3 3 5-6"/>
+{% elif name == 'search' %}<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>
+{% elif name == 'money' %}<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01 M18 12h.01"/>
+{% endif %}</svg>{%- endmacro %}
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}Visão geral{% endblock %} · Ativos TI</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><a class="skip" href="#main">Ir para o conteúdo</a><aside class="sidebar"><a class="brand" href="{{ url_for('index') }}"><span class="brand-symbol">{{ icon('box', 23) }}</span><span>Ativos<span class="brand-light">TI</span><small>INVENTÁRIO DE TECNOLOGIA</small></span></a><p class="nav-label">WORKSPACE</p><nav aria-label="Navegação principal"><a class="nav-item {{ 'active' if request.endpoint == 'index' }}" href="{{ url_for('index') }}">{{ icon('grid') }} Visão geral</a><a class="nav-item {{ 'active' if request.endpoint in ('inventory', 'detail', 'edit_asset', 'remove_asset') }}" href="{{ url_for('inventory') }}">{{ icon('box') }} Inventário</a><a class="nav-item {{ 'active' if request.endpoint == 'new_asset' }}" href="{{ url_for('new_asset') }}">{{ icon('plus') }} Cadastrar ativo</a></nav><div class="sidebar-bottom"><div class="lab-box">{{ icon('shield', 22) }}<strong>Laboratório DevSecOps</strong><p>Aplicação acadêmica para a AP II.</p><span>Python · SQLite · Docker</span></div><div class="workspace"><span class="workspace-avatar">TI</span><div><strong>Inventário local</strong><small>Ambiente de laboratório</small></div></div></div></aside>
+<div class="shell"><header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong>{% block crumb %}Visão geral{% endblock %}</strong></div><span class="academic">AP II <span>DEVSECOPS</span></span></header><main id="main">{% block content %}{% endblock %}</main><footer><span>Ativos TI · Inventário de tecnologia</span><span>Projeto acadêmico · AP II DevSecOps</span></footer></div></body></html>

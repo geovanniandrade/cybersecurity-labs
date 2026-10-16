@@ -1,0 +1,15 @@
+name: cadastro-ativos
+services:
+  web:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ativos_data:/app/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  ativos_data:
